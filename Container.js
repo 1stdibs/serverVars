@@ -9,9 +9,14 @@ var Container = module.exports = function (store) {
 };
 var mockDataNotFound = '__mock_data_not_found__';
 Container.prototype = {
-    get: function(key) {
+    /**
+     * @param {string} key The key to look up. See documentation in find-namespace-value module
+     * @param {*} fallback A value to fallback to if the `key` is not found
+     * @returns {*}
+     */
+    get: function(key, fallback) {
         if (key) {
-            return findNamespaceValue(key, this.store);
+            return findNamespaceValue(key, this.store, fallback);
         }
         return clone(this.store);
     },

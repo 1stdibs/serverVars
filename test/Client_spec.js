@@ -34,4 +34,8 @@ describe('serverVars client side', function () {
         assert.equal(serverVars.get('test1'), 1);
         assert.equal(serverVars.get('test2.test3'), 3);
     });
+    it('should use the `fallback` value', function () {
+        var value = serverVars.get('noValue', 100);
+        assert.equal(value, 100);
+    })
 });
