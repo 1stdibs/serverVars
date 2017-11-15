@@ -40,7 +40,7 @@ var serverVars = serverVarsFactory();
 
 serverVars.middleware = function (req, res, next) {
     if (res.serverVars === undefined) {
-        res.serverVars = res.locals.serverVars = serverVarsFactory();
+        res.serverVars = res.locals.serverVars = serverVars;
         res.serverVars.add(Object.assign({}, serverVars.store)); // get a copy of app-wide serverVars
     }
     next();
