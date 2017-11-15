@@ -74,9 +74,8 @@ describe('serverVars works', function () {
             });
 
             it('generates the proper script tag', function (done) {
-                // All vars set on server will be present (e.g.: foo1: 1, etc)
-                // vars set by other middleware on locals will not be present
-                var response = '<script type="text/javascript">window.__SERVER_VARS__ = {"foo1":1,"foo2":{"bar":2},"foo3":3,"foo4":{"foo5":5},"mw":"mw2"};</script>';
+                // All vars set on server will be present (e.g.: foo1: 1, etc) on both server and client
+                var response = '<script type="text/javascript">window.__SERVER_VARS__ = {"foo1":1,"foo2":{"bar":2},"foo3":3,"foo4":{"foo5":5},"localsVar":"mw1","mw":"mw2"};</script>';
 
                 app.use(function(req, res, next) {
                     res.locals.serverVars.add('mw', 'mw2');
