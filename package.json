@@ -17,10 +17,10 @@
   },
   "homepage": "https://github.com/1stdibs/serverVars",
   "dependencies": {
-    "express": "^4.12.3",
     "lodash.get": "^4.0.0"
   },
   "devDependencies": {
+    "express": "^4.12.3",
     "mocha": "^2.2.4",
     "supertest": "^0.15.0"
   }
