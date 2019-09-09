@@ -4,7 +4,17 @@ import {
     NextFunction
 } from "express";
 
-export function add(key: string, value: any): void;
+export type ServerVarAddKey =
+    | string
+    | {
+          [key: string]:
+              | string
+              | number
+              | object
+              | (string | number | object)[];
+      };
+
+export function add(key: ServerVarAddKey, value: any): void;
 export function get(key: string): any;
 export function inject(): string;
 export function middleware(
