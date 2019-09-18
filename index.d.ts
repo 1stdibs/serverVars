@@ -14,7 +14,7 @@ export type ServerVarAddKey =
               | (string | number | object)[];
       };
 
-export function add(key: ServerVarAddKey, value: any): void;
+export function add(key: ServerVarAddKey, value?: any): void;
 export function get(key: string): any;
 export function inject(): string;
 export function middleware(
