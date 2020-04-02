@@ -1,6 +1,7 @@
 'use strict';
 
 var get = require('lodash.get');
+var jsesc = require('jsesc');
 
 var serverVarsFactory = function() {
     return Object.create({
@@ -36,6 +37,19 @@ var serverVarsFactory = function() {
             this.store = null; // helps w gc
             return stringified;
         },
+        injectEscapedJSONString: function(){
+            var jsonString = jsesc(JSON.stringify(this.store), {
+                json: true,
+                isScriptContext: true,
+                minimal: true,
+            });
+            var stringified = 
+                `<script>
+                    window.__SERVER_VARS__ = JSON.parse(${jsonString});
+                </script>`;
+            this.store = null; // helps w gc
+            return stringified;
+        }
     });
 };
 
