@@ -17,6 +17,7 @@ export type ServerVarAddKey =
 export function add(key: ServerVarAddKey, value?: any): void;
 export function get(key: string): any;
 export function inject(): string;
+export function injectEscapedJSONString(): string;
 export function middleware(
     req: ExpressRequest,
     res: ExpressResponse,
