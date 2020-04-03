@@ -19,7 +19,7 @@ describe('serverVars works', function() {
         var test2 = { foo3: 3, foo4: { foo5: 5 } };
 
         beforeEach(function() {
-            serverVars = require('../');
+            serverVars = require('../server');
         });
 
         afterEach(function() {
@@ -99,11 +99,7 @@ describe('serverVars works', function() {
         beforeEach(function() {
             // mock bootstrapped serverVars
             global.window = { __SERVER_VARS__: { test1: 1, test2: { test3: 3 } } };
-            // need to clear the module's cache
-            // it was instantiated as if on the server already
-            // this resets it so that it will be instantiated as if on the client
-            delete require.cache[require.resolve('../')];
-            serverVars = require('../');
+            serverVars = require('../index');
         });
 
         afterEach(function() {

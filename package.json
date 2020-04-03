@@ -2,7 +2,8 @@
   "name": "server-vars",
   "version": "3.1.3",
   "description": "Share variables between the server and the client.",
-  "main": "index.js",
+  "main": "server.js",
+  "browser": "index.js",
   "scripts": {
     "test": "mocha --recursive --ui bdd test"
   },
