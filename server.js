@@ -45,11 +45,7 @@ const serverVarsFactory = function () {
                 minimal: true,
             });
             this.store = null; // helps w gc
-            return `
-                <script>
-                    window.__SERVER_VARS__ = JSON.parse(${jsonString});
-                </script>
-            `;
+            return `<script>window.__SERVER_VARS__ = JSON.parse(${jsonString});</script>`;
         },
     });
 };
