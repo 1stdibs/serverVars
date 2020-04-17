@@ -24,7 +24,6 @@ const serverVarsFactory = function () {
             return get(this.store, key);
         },
         inject: function () {
-            console.log(this.store);
             var stringified =
                 '<script>window.__SERVER_VARS__ = ' +
                 // safely embed JSON within HTML
