@@ -46,6 +46,18 @@ const serverVarsFactory = function () {
             this.store = null; // helps w gc
             return `<script>window.__SERVER_VARS__ = JSON.parse(${jsonString});</script>`;
         },
+        injectInertScript: function () {
+            const stringified = `<script id="serverVars_data" type="application/json">${JSON.stringify(
+                this.store
+            )
+                .replace(/</g, '\\u003c')
+                .replace(/-->/g, '--\\>')
+                .replace(/\u2028/g, '\\u2028')
+                .replace(/\u2029/g, '\\u2029')}</script>
+                <script>window.__SERVER_VARS__ = JSON.parse(document.getElementById("serverVars_data").textContent);</script>`;
+            this.store = null; // helps w gc
+            return stringified;
+        },
     });
 };
 
