@@ -91,22 +91,6 @@ describe('serverVars works', function() {
                     .expect(200, done);
             });
 
-            it('generates the proper script tag, when injecting escaped json string', function (done) {
-                // All vars set on server will be present (e.g.: foo1: 1, etc)
-                // vars set by other middleware on locals will not be present
-                var response =
-                    '<script>window.__SERVER_VARS__ = JSON.parse("{\\"foo1\\":1,\\"foo2\\":{\\"bar\\":2},\\"foo3\\":3,\\"foo4\\":{\\"foo5\\":5},\\"mw\\":\\"mw2\\"}");</script>';
-
-                app.use(function (req, res, next) {
-                    res.locals.serverVars.add('mw', 'mw2');
-                    next();
-                });
-                app.get('/test', function (req, res) {
-                    res.status(200).send(res.locals.serverVars.injectEscapedJSONString());
-                });
-                supertest(app).get('/test').expect(response).expect(200, done);
-            });
-
             it('generates the proper script tag, when injecting inert string', function (done) {
                 // All vars set on server will be present (e.g.: foo1: 1, etc)
                 // vars set by other middleware on locals will not be present
