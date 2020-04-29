@@ -1,6 +1,5 @@
 'use strict';
 
-const jsesc = require('jsesc');
 const get = require('lodash.get');
 
 const serverVarsFactory = function () {
@@ -37,15 +36,7 @@ const serverVarsFactory = function () {
             this.store = {}; // helps w gc
             return stringified;
         },
-        injectEscapedJSONString: function () {
-            const jsonString = jsesc(JSON.stringify(this.store), {
-                json: true,
-                isScriptContext: true,
-                minimal: true,
-            });
-            this.store = null; // helps w gc
-            return `<script>window.__SERVER_VARS__ = JSON.parse(${jsonString});</script>`;
-        },
+        // inert script is faster for large objects
         injectInertScript: function () {
             const stringified = `<script id="serverVars_data" type="application/json">${JSON.stringify(
                 this.store
