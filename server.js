@@ -54,6 +54,8 @@ const serverVarsFactory = function () {
 
 const serverVars = serverVarsFactory();
 
+serverVars.serverVarsFactory = serverVarsFactory;
+
 serverVars.middleware = function (req, res, next) {
     if (res.serverVars === undefined) {
         res.serverVars = res.locals.serverVars = serverVarsFactory({});
