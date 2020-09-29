@@ -24,6 +24,6 @@
     "@types/express": "^4.17.1",
     "express": "^4.12.3",
     "mocha": "^6.2.0",
-    "supertest": "^0.15.0"
+    "supertest": "^5.0.0"
   }
 }
