@@ -10,6 +10,7 @@ export function add(key: ServerVarAddKey, value?: any): void;
 export function get(key: string): any;
 export function inject(): string;
 export function middleware(req: ExpressRequest, res: ExpressResponse, next: NextFunction): void;
+export function serverVarsFactory(): ServerVars;
 
 export interface ServerVars {
     add: typeof add;
